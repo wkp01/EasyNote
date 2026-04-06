@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  # 数据库连接配置
+  datasource:
+    # 关键：file:./data/demo_db 表示将数据存在 Jar 包同级目录的 data 文件夹下
+    url: jdbc:h2:file:./data/my_db;MODE=MySQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: '123456'
+
+  # H2 控制台配置
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        # 允许远程访问控制台
+        web-allow-others: true
+
+  # JPA 自动建表配置
+  jpa:
+    hibernate:
+      # update: 自动根据 Java 实体类同步表结构，不会删除数据
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        # 确保 Hibernate 使用 H2 的方言
+        dialect: org.hibernate.dialect.H2Dialect

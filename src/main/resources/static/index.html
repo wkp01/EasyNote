@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyNote | Cyber Terminal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars"></div>
+<div class="shooting-stars"></div>
+
+<div class="app-shell">
+    <nav class="side-nav">
+        <div class="logo neon-text-sm">XMAP-TECH</div>
+        <button onclick="switchView('all')" class="nav-item active" id="nav-all">所有数据</button>
+        <button onclick="openAddModal()" class="nav-item gold">新增编码</button>
+        <div class="system-status">
+            <p>STATUS: ONLINE</p>
+            <p>MEMORY: SYNCED</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="search-wrapper">
+                <input type="text" id="keyword" placeholder="输入关键词检索碎片...">
+                <button onclick="handleSearch()" class="neon-btn">RETRIVE</button>
+            </div>
+        </header>
+
+        <div id="content-display" class="grid-layout">
+        </div>
+
+        <div id="pagination" class="pagination-ctrl">
+            <button id="prev-btn" onclick="changePage(-1)" class="neon-btn">PREV</button>
+            <span id="page-info">PAGE: 1</span>
+            <button id="next-btn" onclick="changePage(1)" class="neon-btn">NEXT</button>
+        </div>
+    </main>
+
+    <aside class="info-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h3 class="panel-title" style="margin: 0;">SMART ADVICE</h3>
+            <button onclick="refreshRecommend(true)" class="refresh-icon-btn" title="重新扫描记忆库">
+                <span id="sync-icon">🔄</span>
+            </button>
+        </div>
+        <div id="recommend-panel" class="mini-list">
+        </div>
+    </aside>
+</div>
+
+<div id="add-modal" class="modal">
+    <div class="modal-content neon-border-purple">
+        <span class="close" onclick="closeAddModal()">&times;</span>
+        <h2 class="neon-text-sm">NEW DATA FRAGMENT</h2>
+        <div class="form-container">
+            <input type="text" id="add-content" placeholder="原文 (Content)...">
+            <input type="text" id="add-translation" placeholder="翻译 (Translation)...">
+            <select id="add-type" class="cyber-select">
+                <option value="1">VOCABULARY (词汇)</option>
+                <option value="2">PHRASE (短语)</option>
+                <option value="3">SENTENCE (句子)</option>
+            </select>
+            <input type="text" id="add-tags" placeholder="标签 (Tags)...">
+            <button onclick="submitNewNote()" class="neon-btn purple full-width">UPLOAD TO CLOUD</button>
+        </div>
+    </div>
+</div>
+
+<div id="detail-modal" class="modal">
+    <div class="modal-content neon-border">
+        <span class="close" onclick="closeDetailModal()">&times;</span>
+        <div id="detail-body"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
